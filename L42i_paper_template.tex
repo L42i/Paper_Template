@@ -1,0 +1,284 @@
+%% =====================================================================
+%%  L42i Paper Template  (built on the ACM acmart class)
+%%  Lab for Interaction and Immersion, Georgia Tech School of Music
+%%
+%%  REUSING THIS FOR ANY COURSE
+%%  Edit the COURSE INFO block a few lines down (course name, term,
+%%  institution, ...). The course line on the paper updates itself.
+%%
+%%  HOW TO USE THIS TEMPLATE (for students)
+%%  1. Replace the title, author, abstract, and section text with your own.
+%%  2. Anything in a comment (a line starting with %) is guidance for you
+%%     and will NOT appear in the compiled PDF. Delete comments freely.
+%%  3. Compile with pdfLaTeX. On Overleaf this is the default.
+%%     Menu: Recompile.  Locally: run  latexmk -pdf L42i_paper_template.tex
+%%  4. Keep acmart.cls, ACM-Reference-Format.bst, L42i_paper_template.bib,
+%%     and the figures/ folder next to this file.
+%% =====================================================================
+
+%% =====================================================================
+%%  PROVENANCE & LICENSE
+%%  This file is a modified version of the ACM "acmart" sample
+%%  sigconf.tex, by Boris Veytsman, adapted for course use. The acmart
+%%  article class is distributed under the LaTeX Project Public License
+%%  (LPPL) v1.3c or later; see https://ctan.org/pkg/acmart. Per the
+%%  LPPL, this derivative has been renamed (L42i_paper_template.tex, not sigconf.tex)
+%%  and is marked as modified.
+%%
+%%  Redistributed unmodified in this folder under their own terms:
+%%    - acmart.cls .................. ACM acmart class, LPPL v1.3c
+%%    - ACM-Reference-Format.bst .... public domain (per its own header)
+%%  See NOTICE.txt for details.
+%% =====================================================================
+
+%% This is a course paper, so we turn OFF the ACM copyright/rights block
+%% and reference-format requirements, and use the two-column conference
+%% layout. You should not need to change this line.
+\documentclass[sigconf, screen, nonacm]{acmart}
+
+%% Optional: while drafting, you can switch to a single-column, wider-margin
+%% layout with line numbers for easier feedback by using instead:
+%%   \documentclass[manuscript, screen, nonacm, review]{acmart}
+
+%% ---------------------------------------------------------------------
+%% COURSE INFO  --  edit these lines to reuse the template for any class.
+%% The number and instructor are optional: leave the braces empty to
+%% hide them. This prints as a small footnote on page 1.
+%% ---------------------------------------------------------------------
+\newcommand{\coursename}{Technology Ensemble}
+\newcommand{\coursenumber}{}                              % optional
+\newcommand{\courseterm}{Fall}
+\newcommand{\courseyear}{2026}
+\newcommand{\courseinstitution}{Georgia Institute of Technology}
+\newcommand{\coursedepartment}{School of Music}
+\newcommand{\courseinstructor}{}                          % optional
+
+%% These two lines suppress the leftover ACM reference/copyright
+%% formatting (a class paper doesn't need it). Leave them alone.
+\settopmatter{printacmref=false, printccs=false, printfolios=true}
+\setcopyright{none}
+
+%% Assembles the course line from the fields above. You don't need to
+%% edit this --- optional fields appear only if you filled them in.
+\newcommand{\courseline}{%
+  Prepared for \emph{\coursename}%
+  \ifdefempty{\coursenumber}{}{ (\coursenumber)}%
+  , \courseterm~\courseyear, \courseinstitution, \coursedepartment.%
+  \ifdefempty{\courseinstructor}{}{ Instructor: \courseinstructor.}%
+}
+
+%% BibTeX logo helper (leave this alone).
+\AtBeginDocument{\providecommand\BibTeX{{Bib\TeX}}}
+
+%% Add any extra packages you need below (examples commented out):
+%% \usepackage{listings}   % for typesetting code / patch listings
+%% \usepackage{tikz}       % for drawing signal-flow diagrams
+
+\begin{document}
+
+%% ---------------------------------------------------------------------
+%% TITLE
+%% Capitalize the title normally. If the title is long, put a short
+%% version in the square brackets for the page header.
+%% ---------------------------------------------------------------------
+\title[Short Title for Page Header]{Your Project Title:
+  A Descriptive Subtitle If You Need One}
+%% This footnote stamps the paper with the course (COURSE INFO block
+%% above). You don't need to edit it.
+\titlenote{\courseline}
+
+%% ---------------------------------------------------------------------
+%% AUTHORS
+%% This example shows a four-student group. Give each author their own
+%% \affiliation block --- this is what produces ACM's side-by-side author
+%% grid. Add or remove \author blocks to match your group. Authors at the
+%% same school still each get a block (just repeat the same affiliation).
+%% ---------------------------------------------------------------------
+\author{Student One}
+\email{sone@gatech.edu}
+\affiliation{%
+  \institution{Georgia Institute of Technology}
+  \city{Atlanta}
+  \state{Georgia}
+  \country{USA}}
+
+\author{Student Two}
+\email{stwo@gatech.edu}
+\affiliation{%
+  \institution{Georgia Institute of Technology}
+  \city{Atlanta}
+  \state{Georgia}
+  \country{USA}}
+
+\author{Student Three}
+\email{sthree@gatech.edu}
+\affiliation{%
+  \institution{Georgia Institute of Technology}
+  \city{Atlanta}
+  \state{Georgia}
+  \country{USA}}
+
+\author{Student Four}
+\email{sfour@gatech.edu}
+\affiliation{%
+  \institution{Georgia Institute of Technology}
+  \city{Atlanta}
+  \state{Georgia}
+  \country{USA}}
+
+%% Short author list used in the page header. Update to match your authors.
+\renewcommand{\shortauthors}{One, Two, Three, and Four}
+
+%% ---------------------------------------------------------------------
+%% ABSTRACT
+%% 4--6 sentences: what you built or performed, why, how, and what you
+%% found. Write this last, once the paper is done.
+%% ---------------------------------------------------------------------
+\begin{abstract}
+  Summarize your project in a short paragraph. State what you made ---
+  an instrument, a system, a piece, a performance --- and the idea
+  behind it. Briefly name the tools or techniques you used, describe
+  how it was performed or tested, and end with what you learned or what
+  the result demonstrates.
+\end{abstract}
+
+%% ---------------------------------------------------------------------
+%% KEYWORDS (optional for this course --- delete if you prefer)
+%% A few comma-separated terms describing the work.
+%% ---------------------------------------------------------------------
+\keywords{live electronics, spatial audio, mapping, real-time synthesis}
+
+%% ---------------------------------------------------------------------
+%% TEASER FIGURE (OPTIONAL). A wide image spanning both columns, shown
+%% above the body --- e.g. a performance photo, your interface, or a
+%% setup diagram. It is optional: to leave it out, delete this whole
+%% block. To use it, replace figures/teaser.png with your own image.
+%% ---------------------------------------------------------------------
+\begin{teaserfigure}
+  \includegraphics[width=\textwidth]{figures/teaser}
+  \caption{Optional teaser image spanning both columns --- here, a
+    spatial loudspeaker layout and a waveform. Replace it with a
+    performance photo or interface shot, or delete the block entirely.}
+  \Description{A ring of eight loudspeakers around a central listener,
+    next to a wide audio waveform.}
+\end{teaserfigure}
+
+\maketitle
+
+%% =====================================================================
+%%  BODY
+%%  The sections below are a suggested structure for a project paper.
+%%  Rename, merge, split, or reorder them to fit YOUR project.
+%% =====================================================================
+
+\section{Introduction}
+Open with the idea. What is the project, and what motivated it? What
+question, sound, gesture, or performance situation were you exploring?
+Close this section with a one-sentence statement of what the paper
+contributes or demonstrates, so the reader knows where things are
+headed.
+
+\section{Background and Related Work}
+Situate your work. Mention the instruments, systems, pieces, composers,
+or research that your project builds on or reacts to. This is where you
+cite sources --- for example, the laptop-orchestra tradition
+\cite{trueman2006plork}, foundational computer-music
+technique~\cite{puckette2007}, or a tool you relied
+on~\cite{supercollider}. Citations are numbered automatically; see the
+\texttt{L42i\_paper\_template.bib} file for how each entry is written.
+
+\section{System Design}
+Describe the architecture of what you built at a conceptual level,
+before the implementation details. What are the parts, and how does
+signal or information flow between them? A block diagram is usually the
+clearest way to show this (Figure~\ref{fig:signal-flow}).
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=\columnwidth]{figures/signal-flow}
+  \caption{A signal-flow diagram of the system: input is captured,
+    mapped to synthesis parameters, rendered as sound, spatialized, and
+    sent to the loudspeakers. Replace this with a diagram of your own
+    system.}
+  \Description{Five boxes connected left to right by arrows: Controller
+    or Sensor, Mapping, Sound Synthesis, Spatialization, and Loudspeaker
+    Array.}
+  \label{fig:signal-flow}
+\end{figure}
+
+\section{Implementation}
+Now get concrete. What software and hardware did you use (for example
+Pure Data, SuperCollider, Max, sensors, microphones, a loudspeaker
+array)? How did you map input to sound? If the mapping or a piece of
+DSP is central to your project, show it. For instance, a simple
+amplitude control that scales a gesture value $g \in [0,1]$ into a
+gain~$a$ might be written as
+
+\begin{equation}
+  a = g^{\,2},
+  \label{eq:mapping}
+\end{equation}
+
+which gives finer control at low levels. Refer back to equations by
+number, as in Equation~\ref{eq:mapping}.
+
+\section{Performance and Evaluation}
+Describe how the work was actually used --- in rehearsal, in
+performance, or in testing. What happened? What worked well, and what
+did not? Concrete observations are more useful than general claims. A
+small table can help summarize results or configurations
+(Table~\ref{tab:setup}).
+
+\begin{table}[h]
+  \centering
+  \caption{Example table: summarize a setup, a mapping, or results.
+    Replace the rows with your own.}
+  \label{tab:setup}
+  \begin{tabular}{ll}
+    \toprule
+    Element & Choice \\
+    \midrule
+    Controller   & Wireless motion sensor \\
+    Synthesis    & Granular, real-time \\
+    Spatializer  & 8-channel VBAP \\
+    Latency      & $\approx$ 12\,ms \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\section{Discussion}
+Step back and reflect. What did the project teach you about the idea
+you started with? What were the limitations, and what would you change?
+This is also the place to connect your specific result back to the
+broader themes of the course.
+
+\section{Conclusion and Future Work}
+Briefly restate what you did and what it showed, then point to where it
+could go next --- extensions, a new piece, a more robust version, a
+different performance context.
+
+%% ---------------------------------------------------------------------
+%% ACKNOWLEDGMENTS (optional). Use this environment, not a \section.
+%% ---------------------------------------------------------------------
+\begin{acks}
+  Thank collaborators, performers, and anyone who helped with the
+  project here. Delete this section if you don't need it.
+\end{acks}
+
+%% ---------------------------------------------------------------------
+%% REFERENCES
+%% Add your sources to L42i_paper_template.bib and cite them with \cite{key}.
+%% Only sources you actually cite will appear in the list.
+%% ---------------------------------------------------------------------
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{L42i_paper_template}
+
+%% ---------------------------------------------------------------------
+%% APPENDIX (optional). Uncomment to add. Appendix sections are lettered.
+%% Good for long code listings, extra diagrams, or full parameter tables.
+%% ---------------------------------------------------------------------
+% \appendix
+% \section{Additional Material}
+% Put supplementary content here.
+
+\end{document}

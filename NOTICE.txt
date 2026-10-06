@@ -1,0 +1,59 @@
+NOTICE — Provenance and Licenses
+================================================================
+
+This course paper template is a derivative of the ACM "acmart"
+article template. Attribution and license terms for each component
+are below.
+
+
+1. L42i_paper_template.tex  (this template's main file)
+----------------------------------------------------------------
+A modified version of the ACM "acmart" sample file "sigconf.tex",
+by Boris Veytsman, adapted for course use (course metadata block,
+project-paper section structure, and guidance comments).
+
+The acmart package — including its sample files — is distributed
+under the LaTeX Project Public License (LPPL), version 1.3c or
+later:  https://www.latex-project.org/lppl/
+
+As the LPPL requires for a modified file, this derivative has been
+renamed (L42i_paper_template.tex, distinct from sigconf.tex) and is marked as a
+modified version. The acmart sample header also states that any
+modified version of a sample file must be renamed — which it has.
+
+acmart on CTAN:  https://ctan.org/pkg/acmart
+acmart source (development): https://github.com/borisveytsman/acmart
+
+
+2. acmart.cls  (redistributed unmodified)
+----------------------------------------------------------------
+The ACM "acmart" document class, by Boris Veytsman.
+License: LaTeX Project Public License (LPPL) v1.3c or later.
+Redistributed here without modification so the template compiles
+out of the box. The file retains its original headers.
+
+
+3. ACM-Reference-Format.bst  (redistributed unmodified)
+----------------------------------------------------------------
+The ACM reference bibliography style, by Nelson H. F. Beebe,
+Boris Veytsman, and Gerald Murray.
+License: public domain (as stated in the file's own header).
+Redistributed here without modification.
+
+
+4. L42i_paper_template.bib, figures/, README.md, and the course-specific
+   text in L42i_paper_template.tex
+----------------------------------------------------------------
+These are original to this template (or placeholder content you
+are expected to replace) and are provided for course use. The
+example references and the signal-flow figure are illustrative
+placeholders.
+
+
+A note on Creative Commons
+----------------------------------------------------------------
+The acmart template itself is NOT under a Creative Commons license
+— it is LPPL (class/samples) and public domain (the .bst).
+Creative Commons options in ACM's documentation refer to the
+copyright an *author* may assign to a *published article*, which
+is a separate matter from the license of the template software.
