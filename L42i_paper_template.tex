@@ -7,7 +7,8 @@
 %%  institution, ...). The course line on the paper updates itself.
 %%
 %%  HOW TO USE THIS TEMPLATE (for students)
-%%  1. Replace the title, author, abstract, and section text with your own.
+%%  1. Replace the title, authors, and each \lipsum[...] with your own
+%%     writing. The short comment above each section says what goes there.
 %%  2. Anything in a comment (a line starting with %) is guidance for you
 %%     and will NOT appear in the compiled PDF. Delete comments freely.
 %%  3. Compile with pdfLaTeX. On Overleaf this is the default.
@@ -24,6 +25,9 @@
 %%  (LPPL) v1.3c or later; see https://ctan.org/pkg/acmart. Per the
 %%  LPPL, this derivative has been renamed (L42i_paper_template.tex, not sigconf.tex)
 %%  and is marked as modified.
+%%
+%%  This template is itself distributed under the LPPL v1.3c or later;
+%%  see the LICENSE file. Modifications (c) 2026 Henrik von Coler / L42i.
 %%
 %%  Redistributed unmodified in this folder under their own terms:
 %%    - acmart.cls .................. ACM acmart class, LPPL v1.3c
@@ -53,6 +57,10 @@
 \newcommand{\coursedepartment}{School of Music}
 \newcommand{\courseinstructor}{}                          % optional
 
+%% Running header shown at the top of EVERY page (institution / school).
+%% Leave the braces empty to turn the header off.
+\newcommand{\pageheadertext}{Georgia Tech \textbullet\ School of Music}
+
 %% These two lines suppress the leftover ACM reference/copyright
 %% formatting (a class paper doesn't need it). Leave them alone.
 \settopmatter{printacmref=false, printccs=false, printfolios=true}
@@ -61,7 +69,7 @@
 %% Assembles the course line from the fields above. You don't need to
 %% edit this --- optional fields appear only if you filled them in.
 \newcommand{\courseline}{%
-  Prepared for \emph{\coursename}%
+  Submitted for \emph{\coursename}%
   \ifdefempty{\coursenumber}{}{ (\coursenumber)}%
   , \courseterm~\courseyear, \courseinstitution, \coursedepartment.%
   \ifdefempty{\courseinstructor}{}{ Instructor: \courseinstructor.}%
@@ -70,9 +78,72 @@
 %% BibTeX logo helper (leave this alone).
 \AtBeginDocument{\providecommand\BibTeX{{Bib\TeX}}}
 
-%% Add any extra packages you need below (examples commented out):
-%% \usepackage{listings}   % for typesetting code / patch listings
-%% \usepackage{tikz}       % for drawing signal-flow diagrams
+%% The body uses \lipsum[..] as placeholder ("Lorem ipsum") text so the
+%% template reads the same for any class. Replace each \lipsum with your
+%% own writing; once none are left, you can delete this package line.
+\usepackage{lipsum}
+
+%% ---------------------------------------------------------------------
+%% CODE LISTINGS  --  used by the "Code" section below.
+%% SuperCollider isn't a built-in listings language, so we define a small
+%% keyword set here. For another course, change the keywords, or set
+%% 'language' in \lstset to a built-in one (e.g. language=Python) and
+%% delete this \lstdefinelanguage block.
+%% ---------------------------------------------------------------------
+\usepackage{listings}
+\lstdefinelanguage{SuperCollider}{
+  morekeywords={var,arg,SynthDef,Synth,SinOsc,EnvGen,Env,Out,perc,
+                add,play,ar,kr,doneAction},
+  sensitive=true,
+  morecomment=[l]{//},
+  morecomment=[s]{/*}{*/},
+  morestring=[b]",
+}
+\lstset{
+  language=SuperCollider,
+  basicstyle=\ttfamily\small,
+  keywordstyle=\bfseries,
+  commentstyle=\color{gray},
+  columns=fullflexible,
+  keepspaces=true,
+  breaklines=true,
+  frame=single,
+  framesep=6pt,
+  xleftmargin=6pt,
+}
+
+%% Add any other packages you need below (example commented out):
+%% \usepackage{tikz}       % for drawing diagrams
+
+%% ---------------------------------------------------------------------
+%% PAGE HEADER. Puts \pageheadertext (set in COURSE INFO) centered at the
+%% top of every page, keeping acmart's title/author running heads and the
+%% page number. To change the header, edit \pageheadertext above; to
+%% remove it, set that to empty. (Assumes the default sigconf layout.)
+%% This runs at \begin{document} so it applies after acmart sets its own
+%% page styles.
+%% ---------------------------------------------------------------------
+\makeatletter
+\AtBeginDocument{%
+  \fancypagestyle{standardpagestyle}{%
+    \fancyhf{}%
+    \renewcommand{\headrulewidth}{\z@}%
+    \renewcommand{\footrulewidth}{\z@}%
+    \fancyfoot[C]{\if@ACM@printfolios\footnotesize\thepage\fi}%
+    \fancyhead[L]{\ACM@linecountL\@headfootfont\shorttitle}%
+    \fancyhead[R]{\@headfootfont\@shortauthors\ACM@linecountR}%
+    \ifdefempty{\pageheadertext}{}{\fancyhead[C]{\@headfootfont\pageheadertext}}%
+  }%
+  \fancypagestyle{firstpagestyle}{%
+    \fancyhf{}%
+    \renewcommand{\headrulewidth}{\z@}%
+    \renewcommand{\footrulewidth}{\z@}%
+    \fancyfoot[C]{\if@ACM@printfolios\footnotesize\thepage\fi}%
+    \ifdefempty{\pageheadertext}{}{\fancyhead[C]{\@headfootfont\pageheadertext}}%
+  }%
+  \pagestyle{standardpagestyle}%
+}
+\makeatother
 
 \begin{document}
 
@@ -81,8 +152,7 @@
 %% Capitalize the title normally. If the title is long, put a short
 %% version in the square brackets for the page header.
 %% ---------------------------------------------------------------------
-\title[Short Title for Page Header]{Your Project Title:
-  A Descriptive Subtitle If You Need One}
+\title[Short Title]{The Title: A Template for Coursework}
 %% This footnote stamps the paper with the course (COURSE INFO block
 %% above). You don't need to edit it.
 \titlenote{\courseline}
@@ -130,37 +200,29 @@
 \renewcommand{\shortauthors}{One, Two, Three, and Four}
 
 %% ---------------------------------------------------------------------
-%% ABSTRACT
-%% 4--6 sentences: what you built or performed, why, how, and what you
-%% found. Write this last, once the paper is done.
+%% ABSTRACT  --  a short paragraph: what you did, why, how, what you found.
+%% Write it last, once the paper is done. (Placeholder text below.)
 %% ---------------------------------------------------------------------
 \begin{abstract}
-  Summarize your project in a short paragraph. State what you made ---
-  an instrument, a system, a piece, a performance --- and the idea
-  behind it. Briefly name the tools or techniques you used, describe
-  how it was performed or tested, and end with what you learned or what
-  the result demonstrates.
+  \lipsum[1]
 \end{abstract}
 
 %% ---------------------------------------------------------------------
-%% KEYWORDS (optional for this course --- delete if you prefer)
-%% A few comma-separated terms describing the work.
+%% KEYWORDS (optional --- delete if you prefer). A few comma-separated
+%% terms describing the work.
 %% ---------------------------------------------------------------------
-\keywords{live electronics, spatial audio, mapping, real-time synthesis}
+\keywords{keyword one, keyword two, keyword three}
 
 %% ---------------------------------------------------------------------
 %% TEASER FIGURE (OPTIONAL). A wide image spanning both columns, shown
-%% above the body --- e.g. a performance photo, your interface, or a
-%% setup diagram. It is optional: to leave it out, delete this whole
+%% above the body. It is optional: to leave it out, delete this whole
 %% block. To use it, replace figures/teaser.png with your own image.
 %% ---------------------------------------------------------------------
 \begin{teaserfigure}
   \includegraphics[width=\textwidth]{figures/teaser}
-  \caption{Optional teaser image spanning both columns --- here, a
-    spatial loudspeaker layout and a waveform. Replace it with a
-    performance photo or interface shot, or delete the block entirely.}
-  \Description{A ring of eight loudspeakers around a central listener,
-    next to a wide audio waveform.}
+  \caption{Optional teaser image spanning both columns. Replace it with
+    your own image, or delete this block entirely.}
+  \Description{Describe the teaser image here for accessibility.}
 \end{teaserfigure}
 
 \maketitle
@@ -168,102 +230,99 @@
 %% =====================================================================
 %%  BODY
 %%  The sections below are a suggested structure for a project paper.
-%%  Rename, merge, split, or reorder them to fit YOUR project.
+%%  Rename, merge, split, or reorder them to fit YOUR project. Replace
+%%  every \lipsum[..] with your own text; the comment over each section
+%%  says what belongs there. The figure, equation, table, code, and
+%%  citation are kept as working examples --- reuse their mechanics,
+%%  replace their content.
 %% =====================================================================
 
-\section{Introduction}
-Open with the idea. What is the project, and what motivated it? What
-question, sound, gesture, or performance situation were you exploring?
-Close this section with a one-sentence statement of what the paper
-contributes or demonstrates, so the reader knows where things are
-headed.
+\section{Example Section: Citations}
+%% Situate the work; cite what it builds on or reacts to.
+\lipsum[3]
+Cite sources inline --- one like this~\cite{puckette2007}, or several
+like this~\cite{smalley1997spectromorphology, supercollider}. Entries live in the
+\texttt{.bib} file, and the numbering is automatic.
 
-\section{Background and Related Work}
-Situate your work. Mention the instruments, systems, pieces, composers,
-or research that your project builds on or reacts to. This is where you
-cite sources --- for example, the laptop-orchestra tradition
-\cite{trueman2006plork}, foundational computer-music
-technique~\cite{puckette2007}, or a tool you relied
-on~\cite{supercollider}. Citations are numbered automatically; see the
-\texttt{L42i\_paper\_template.bib} file for how each entry is written.
+\section{Example Section: Figures}
+%% The design or method at a conceptual level. A diagram often helps ---
+%% refer to it by its \label, as shown.
+\lipsum[4]
 
-\section{System Design}
-Describe the architecture of what you built at a conceptual level,
-before the implementation details. What are the parts, and how does
-signal or information flow between them? A block diagram is usually the
-clearest way to show this (Figure~\ref{fig:signal-flow}).
+A block diagram is often the clearest overview (Figure~\ref{fig:example}).
 
 \begin{figure}[h]
   \centering
   \includegraphics[width=\columnwidth]{figures/signal-flow}
-  \caption{A signal-flow diagram of the system: input is captured,
-    mapped to synthesis parameters, rendered as sound, spatialized, and
-    sent to the loudspeakers. Replace this with a diagram of your own
-    system.}
-  \Description{Five boxes connected left to right by arrows: Controller
-    or Sensor, Mapping, Sound Synthesis, Spatialization, and Loudspeaker
-    Array.}
-  \label{fig:signal-flow}
+  \caption{Example figure. Replace it with your own and update the
+    caption and label.}
+  \Description{Describe the figure here for accessibility.}
+  \label{fig:example}
 \end{figure}
 
-\section{Implementation}
-Now get concrete. What software and hardware did you use (for example
-Pure Data, SuperCollider, Max, sensors, microphones, a loudspeaker
-array)? How did you map input to sound? If the mapping or a piece of
-DSP is central to your project, show it. For instance, a simple
-amplitude control that scales a gesture value $g \in [0,1]$ into a
-gain~$a$ might be written as
-
+\section{Example Section: Equations}
+%% The concrete how: tools, materials, steps. Show key equations if they
+%% matter --- number them and refer back by \label, as shown.
+\lipsum[5]
+Set and reference equations by number, as in Equation~\ref{eq:example}:
 \begin{equation}
-  a = g^{\,2},
-  \label{eq:mapping}
+  y = a\,x + b .
+  \label{eq:example}
 \end{equation}
 
-which gives finer control at low levels. Refer back to equations by
-number, as in Equation~\ref{eq:mapping}.
 
-\section{Performance and Evaluation}
-Describe how the work was actually used --- in rehearsal, in
-performance, or in testing. What happened? What worked well, and what
-did not? Concrete observations are more useful than general claims. A
-small table can help summarize results or configurations
-(Table~\ref{tab:setup}).
+\section{Example Section: Code}
+%% Show code when it helps. Use \lstinline for a short snippet inside a
+%% sentence, and the lstlisting environment for a block you can caption
+%% and reference. The listings setup (and language) is in the preamble.
+
+Name code inline like \lstinline|SinOsc.ar(440)| when it belongs in a
+sentence. For anything longer, set it as a listing you can caption and
+refer to by label, as in Listing~\ref{lst:example}.
+
+\begin{lstlisting}[caption={Example SuperCollider code.}, label={lst:example}]
+// a simple synth: a sine tone with a percussive envelope
+SynthDef(\ping, { arg freq = 440, amp = 0.2;
+    var env = EnvGen.kr(Env.perc(0.01, 0.5), doneAction: 2);
+    var sig = SinOsc.ar(freq) * env * amp;
+    Out.ar(0, sig ! 2);
+}).add;
+
+// play one note
+Synth(\ping, [\freq, 660]);
+\end{lstlisting}
+
+\lipsum[2]
+
+
+\section{Example Section: Tables}
+%% What happened: observations, measurements, outcomes. A table can
+%% summarize structured results (Table~\ref{tab:example}).
+\lipsum[6]
 
 \begin{table}[h]
   \centering
-  \caption{Example table: summarize a setup, a mapping, or results.
-    Replace the rows with your own.}
-  \label{tab:setup}
+  \caption{Example table --- replace the rows with your own.}
+  \label{tab:example}
   \begin{tabular}{ll}
     \toprule
-    Element & Choice \\
+    Item & Value \\
     \midrule
-    Controller   & Wireless motion sensor \\
-    Synthesis    & Granular, real-time \\
-    Spatializer  & 8-channel VBAP \\
-    Latency      & $\approx$ 12\,ms \\
+    First item   & Value A \\
+    Second item  & Value B \\
+    Third item   & Value C \\
     \bottomrule
   \end{tabular}
 \end{table}
 
-\section{Discussion}
-Step back and reflect. What did the project teach you about the idea
-you started with? What were the limitations, and what would you change?
-This is also the place to connect your specific result back to the
-broader themes of the course.
-
-\section{Conclusion and Future Work}
-Briefly restate what you did and what it showed, then point to where it
-could go next --- extensions, a new piece, a more robust version, a
-different performance context.
 
 %% ---------------------------------------------------------------------
 %% ACKNOWLEDGMENTS (optional). Use this environment, not a \section.
 %% ---------------------------------------------------------------------
-\begin{acks}
-  Thank collaborators, performers, and anyone who helped with the
-  project here. Delete this section if you don't need it.
-\end{acks}
+% \begin{acks}
+%   Thank collaborators and anyone who helped with the project here.
+%   Delete this section if you don't need it.
+% \end{acks}
 
 %% ---------------------------------------------------------------------
 %% REFERENCES

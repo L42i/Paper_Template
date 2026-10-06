@@ -22,11 +22,14 @@ values. The course line on the paper updates automatically.
 \newcommand{\courseinstitution}{Georgia Institute of Technology}
 \newcommand{\coursedepartment}{School of Music}
 \newcommand{\courseinstructor}{}       % optional — leave empty to hide
+\newcommand{\pageheadertext}{Georgia Tech \textbullet\ School of Music}
 ```
 
 The number and instructor fields are optional: fill them in and they
-appear; leave the braces empty and they're omitted. A typical workflow
-is to set these once per class and hand students the folder.
+appear; leave the braces empty and they're omitted. `\pageheadertext`
+sets the running header at the top of every page — change it, or set it
+empty to turn the header off. A typical workflow is to set these once per
+class and hand students the folder.
 
 ## What's in this folder
 
@@ -37,7 +40,8 @@ is to set these once per class and hand students the folder.
 | `figures/` | Put images here (a placeholder diagram is included). |
 | `acmart.cls` | The document style. Don't edit. |
 | `ACM-Reference-Format.bst` | The citation style. Don't edit. |
-| `NOTICE.txt` | Attribution and license notes (see below). |
+| `NOTICE.txt` | Attribution breakdown (see below). |
+| `LICENSE` | The template's license (LPPL v1.3c). |
 
 ## Getting started on Overleaf (recommended)
 
@@ -83,19 +87,37 @@ paper, a book, a journal article, and software in that file.
 \end{equation}
 ```
 
+**Add code** — a short snippet inside a sentence uses `\lstinline|code|`;
+a block uses the `lstlisting` environment (it can be captioned and
+referenced like a figure). The listings setup is in the preamble; its
+default language is SuperCollider — change the keyword list there, or set
+`language=Python` (etc.) in `\lstset`, to suit your course.
+
+## Placeholder text
+
+The body ships filled with `\lipsum[..]` ("Lorem ipsum") placeholder text,
+so the template looks the same for any class. Replace each `\lipsum[..]`
+with your own writing — the short comment above each section says what
+belongs there. Once no `\lipsum` remains, you can delete the
+`\usepackage{lipsum}` line near the top.
+
 ## A note on structure
 
-The sections in `L42i_paper_template.tex` (Introduction, Background, System Design,
-Implementation, Performance, Discussion, Conclusion) are a **suggestion**
-for a project paper. Rename, reorder, or replace them to fit the
-assignment.
+The body ships as a set of "Example Section" demos — Citations, Figures,
+Equations, Tables, and Code — each pairing placeholder prose with one
+working example of that mechanic. Rename, reorder, merge, or replace the
+sections to fit the assignment; reuse the mechanics, swap in your own
+content.
 
 ## License and attribution
 
-This template is derived from the ACM `acmart` template by Boris Veytsman.
-The `acmart` class is under the LaTeX Project Public License (LPPL) v1.3c,
-and `ACM-Reference-Format.bst` is public domain. `L42i_paper_template.tex` is a modified
-version of the `acmart` sample `sigconf.tex`, renamed and adapted for
-course use as the LPPL requires. Full details are in `NOTICE.txt`.
+This template is licensed under the **LaTeX Project Public License (LPPL)
+v1.3c or later** — see the `LICENSE` file. It is a modified version of the
+ACM `acmart` sample `sigconf.tex` by Boris Veytsman, renamed and marked as
+modified as the LPPL requires; modifications © 2026 Henrik von Coler / L42i.
+
+The bundled `acmart.cls` (LPPL v1.3c) and `ACM-Reference-Format.bst`
+(public domain) are redistributed unmodified under their own terms. Full
+attribution is in `NOTICE.txt`.
 
 (Note: `acmart` is *not* Creative Commons — it's LPPL.)

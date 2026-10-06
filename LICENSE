@@ -1,0 +1,29 @@
+L42i Paper Template — License
+================================================================
+
+This template — L42i_paper_template.tex, L42i_paper_template.bib,
+README.md, and the figures/ folder — is a modified version of the ACM
+"acmart" sample file sigconf.tex, by Boris Veytsman.
+
+It is distributed under the LaTeX Project Public License (LPPL),
+version 1.3c or later — the same license as acmart. As the LPPL
+requires for a modified work, it has been renamed (the main file is
+L42i_paper_template.tex, distinct from sigconf.tex) and is marked as a
+modified version.
+
+The full text of the LPPL v1.3c is at:
+    https://www.latex-project.org/lppl/lppl-1-3c/
+
+Modifications (c) 2026 Henrik von Coler,
+Lab for Interaction and Immersion (L42i),
+Georgia Institute of Technology, School of Music.
+
+----------------------------------------------------------------
+Bundled files, redistributed UNMODIFIED under their own terms
+(this license does not change them):
+
+  acmart.cls ................... ACM acmart class, LPPL v1.3c
+                                 https://ctan.org/pkg/acmart
+  ACM-Reference-Format.bst ..... public domain (per its own header)
+
+See NOTICE.txt for the full attribution breakdown.
